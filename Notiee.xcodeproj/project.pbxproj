@@ -3,25 +3,33 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C5DC4C92477EEB100236E94 /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DC4C52477EEB100236E94 /* Category+CoreDataClass.swift */; };
+		8C5DC4CA2477EEB100236E94 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DC4C62477EEB100236E94 /* Category+CoreDataProperties.swift */; };
+		8C5DC4CB2477EEB100236E94 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DC4C72477EEB100236E94 /* Note+CoreDataClass.swift */; };
+		8C5DC4CC2477EEB100236E94 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DC4C82477EEB100236E94 /* Note+CoreDataProperties.swift */; };
+		8C7BF4892477E2AF00088387 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C7BF4872477E2AF00088387 /* Main.storyboard */; };
 		8CE303C42477BD630063B29D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE303C32477BD630063B29D /* AppDelegate.swift */; };
 		8CE303C62477BD630063B29D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE303C52477BD630063B29D /* SceneDelegate.swift */; };
 		8CE303C82477BD630063B29D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE303C72477BD630063B29D /* ViewController.swift */; };
-		8CE303CB2477BD630063B29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CE303C92477BD630063B29D /* Main.storyboard */; };
 		8CE303CE2477BD630063B29D /* Notiee.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8CE303CC2477BD630063B29D /* Notiee.xcdatamodeld */; };
 		8CE303D02477BD680063B29D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE303CF2477BD680063B29D /* Assets.xcassets */; };
 		8CE303D32477BD680063B29D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CE303D12477BD680063B29D /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8C5DC4C52477EEB100236E94 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8C5DC4C62477EEB100236E94 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8C5DC4C72477EEB100236E94 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8C5DC4C82477EEB100236E94 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8C7BF4882477E2AF00088387 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8CE303C02477BD630063B29D /* Notiee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notiee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CE303C32477BD630063B29D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CE303C52477BD630063B29D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8CE303C72477BD630063B29D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8CE303CA2477BD630063B29D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8CE303CD2477BD630063B29D /* Notiee.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Notiee.xcdatamodel; sourceTree = "<group>"; };
 		8CE303CF2477BD680063B29D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8CE303D22477BD680063B29D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -39,6 +47,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C5DC4CD2477EEED00236E94 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8C5DC4C52477EEB100236E94 /* Category+CoreDataClass.swift */,
+				8C5DC4C62477EEB100236E94 /* Category+CoreDataProperties.swift */,
+				8C5DC4C72477EEB100236E94 /* Note+CoreDataClass.swift */,
+				8C5DC4C82477EEB100236E94 /* Note+CoreDataProperties.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8C7BF48A2477E2F700088387 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8CE303C72477BD630063B29D /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		8CE303B72477BD630063B29D = {
 			isa = PBXGroup;
 			children = (
@@ -58,10 +85,11 @@
 		8CE303C22477BD630063B29D /* Notiee */ = {
 			isa = PBXGroup;
 			children = (
+				8C5DC4CD2477EEED00236E94 /* Model */,
 				8CE303C32477BD630063B29D /* AppDelegate.swift */,
+				8C7BF48A2477E2F700088387 /* Controller */,
 				8CE303C52477BD630063B29D /* SceneDelegate.swift */,
-				8CE303C72477BD630063B29D /* ViewController.swift */,
-				8CE303C92477BD630063B29D /* Main.storyboard */,
+				8C7BF4872477E2AF00088387 /* Main.storyboard */,
 				8CE303CF2477BD680063B29D /* Assets.xcassets */,
 				8CE303D12477BD680063B29D /* LaunchScreen.storyboard */,
 				8CE303D42477BD680063B29D /* Info.plist */,
@@ -106,7 +134,7 @@
 				};
 			};
 			buildConfigurationList = 8CE303BB2477BD630063B29D /* Build configuration list for PBXProject "Notiee" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -128,9 +156,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C7BF4892477E2AF00088387 /* Main.storyboard in Resources */,
 				8CE303D32477BD680063B29D /* LaunchScreen.storyboard in Resources */,
 				8CE303D02477BD680063B29D /* Assets.xcassets in Resources */,
-				8CE303CB2477BD630063B29D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,8 +170,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CE303C82477BD630063B29D /* ViewController.swift in Sources */,
+				8C5DC4CC2477EEB100236E94 /* Note+CoreDataProperties.swift in Sources */,
+				8C5DC4CB2477EEB100236E94 /* Note+CoreDataClass.swift in Sources */,
+				8C5DC4CA2477EEB100236E94 /* Category+CoreDataProperties.swift in Sources */,
 				8CE303C42477BD630063B29D /* AppDelegate.swift in Sources */,
 				8CE303C62477BD630063B29D /* SceneDelegate.swift in Sources */,
+				8C5DC4C92477EEB100236E94 /* Category+CoreDataClass.swift in Sources */,
 				8CE303CE2477BD630063B29D /* Notiee.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,10 +183,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8CE303C92477BD630063B29D /* Main.storyboard */ = {
+		8C7BF4872477E2AF00088387 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8CE303CA2477BD630063B29D /* Base */,
+				8C7BF4882477E2AF00088387 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -288,6 +320,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CJ382RZ845;
 				INFOPLIST_FILE = Notiee/Info.plist;
@@ -295,8 +328,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Jakub.Notiee;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Jakub.app.Notiee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -306,6 +340,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CJ382RZ845;
 				INFOPLIST_FILE = Notiee/Info.plist;
@@ -313,8 +348,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Jakub.Notiee;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Jakub.app.Notiee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
