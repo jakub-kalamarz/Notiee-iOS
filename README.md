@@ -8,12 +8,12 @@
 
 ### Features
 
-- [:white_check_mark:] Adding Note 
-- [:white_check_mark:] Adding Category 
-- [:white_check_mark:] Proretize Notes like to-do App 
-- [:white_check_mark:] Notes Reminder
-- [:white_check_mark:] Notes Sharing
-- [:white_check_mark:] Cloud Base
+- [ ] Adding Note 
+- [ ] Adding Category 
+- [ ] Proretize Notes like to-do App 
+- [ ] Notes Reminder
+- [ ] Notes Sharing
+- [ ] Cloud Base
 
 
 ### Stack
