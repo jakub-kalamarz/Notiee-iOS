@@ -6,10 +6,11 @@
     </entity>
     <entity name="Note" representedClassName="Note" syncable="YES">
         <attribute name="text" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="notes" inverseEntity="Category"/>
     </entity>
     <elements>
-        <element name="Note" positionX="-63" positionY="-18" width="128" height="73"/>
         <element name="Category" positionX="-461.20703125" positionY="-99.76953125" width="128" height="73"/>
+        <element name="Note" positionX="-63" positionY="-18" width="128" height="88"/>
     </elements>
 </model>
