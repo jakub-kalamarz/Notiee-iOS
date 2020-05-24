@@ -29,7 +29,6 @@ struct Store {
     
     static func fetchNote() -> [Note] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Note")
-        print("Próba pobranie danych")
         do {
             let result = try context.fetch(request) as! [Note]
             return result
