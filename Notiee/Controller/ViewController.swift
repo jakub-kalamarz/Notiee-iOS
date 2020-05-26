@@ -12,12 +12,19 @@ class ViewController: UIViewController {
     
     var notes = Store.fetchNote()
     
-    var collectionView:UICollectionView = {
+    var cells:[CGSize] = [CGSize]()
+    
+    private var newCellSize: CGSize = .init(width: UIScreen.main.bounds.width, height: 80)
+    
+    private lazy var collectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(NoteViewCell.self, forCellWithReuseIdentifier: "cell")
+        cv.backgroundColor = .systemBackground
+        cv.delegate = self
+        cv.dataSource = self
         return cv
     }()
     
@@ -30,6 +37,7 @@ class ViewController: UIViewController {
     @objc func createNote() {
         let note = Store.newNote()
         self.notes.append(note)
+        self.cells.append(newCellSize)
         self.collectionView.reloadData()
     }
 
@@ -51,9 +59,6 @@ extension ViewController {
     
     func setupCollection() {
         self.view.addSubview(collectionView)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.backgroundColor = .systemBackground
         
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -74,19 +79,28 @@ extension ViewController:UICollectionViewDelegateFlowLayout, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! NoteViewCell
         let note = notes[indexPath.row]
+        cell.index = indexPath.row
         cell.data = note
         cell.delegate = self
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.bounds.width, height: 80)
+        cells[indexPath.row]
     }
 
 
 }
 
-extension ViewController: NoteDataDelegate {
+extension ViewController: NoteDelegate {
+    func updateLayout(_ cell: NoteViewCell, with newSize: CGSize) {
+        let height = newSize.height
+        cells[cell.index] = CGSize(width: newCellSize.width, height: height)
+        print("W: \(newSize.width) \nH: \(newSize.height)")
+        
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
     func changeTitle(title: String, note: Note) {
         note.title = title
     }

@@ -10,13 +10,10 @@ import UIKit
 
 class NoteViewCell: UICollectionViewCell {
     
-    lazy var width: NSLayoutConstraint = {
-        let width = contentView.widthAnchor.constraint(equalToConstant: bounds.size.width)
-        width.isActive = true
-        return width
-    }()
+    weak var delegate:NoteDelegate?
     
-    var delegate:NoteDataDelegate!
+    var index: Int!
+    
     var data:Note! {
         didSet {
             if let title = data.title {
@@ -47,8 +44,8 @@ class NoteViewCell: UICollectionViewCell {
         return tf
     }()
     
-    var paragraph:UITextView = {
-        let tv = UITextView()
+    private var paragraph:NoteTextView = {
+        let tv = NoteTextView()
         tv.font = .boldSystemFont(ofSize: 20)
         tv.isScrollEnabled = false
         tv.textContainer.lineBreakMode = .byWordWrapping
@@ -60,9 +57,10 @@ class NoteViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        contentView.addSubview(indicator)
-        contentView.addSubview(title)
-        contentView.addSubview(paragraph)
+        self.addSubview(indicator)
+        self.addSubview(title)
+        self.addSubview(paragraph)
+        paragraph.coustomDelegate = self
         
         title.delegate = self
         title.addTarget(self, action: #selector(titleChanged(_:)), for: .editingChanged)
@@ -73,22 +71,40 @@ class NoteViewCell: UICollectionViewCell {
             indicator.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 5),
             indicator.topAnchor.constraint(equalTo: self.topAnchor),
             indicator.widthAnchor.constraint(equalToConstant: 7),
-            indicator.heightAnchor.constraint(equalTo: self.contentView.heightAnchor),
+            indicator.heightAnchor.constraint(equalTo: self.heightAnchor),
             
             title.topAnchor.constraint(equalTo: contentView.topAnchor),
             title.leadingAnchor.constraint(equalTo: indicator.trailingAnchor),
-            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             paragraph.topAnchor.constraint(equalTo: title.bottomAnchor),
             paragraph.leadingAnchor.constraint(equalTo: indicator.trailingAnchor),
-            paragraph.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
+            paragraph.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         
         ])
+    }
+
+    
+    override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
+        UIView.animate(withDuration: 0.5) {
+            self.layoutIfNeeded()
+        }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+
+extension NoteViewCell: NoteTextDelegate {
+    func updateFrame(_ textView: UITextView) {
+        let height = textView.contentSize.height + title.frame.height
+        let newSize = CGSize(width: 0, height: height)
+        delegate?.updateLayout(self, with: newSize)
+    }
+    
+    
 }
 
 extension NoteViewCell: UITextFieldDelegate, UITextViewDelegate {
@@ -99,13 +115,13 @@ extension NoteViewCell: UITextFieldDelegate, UITextViewDelegate {
     @objc
     func titleChanged(_ textfield:UITextField) {
         if let text = textfield.text {
-            delegate.changeTitle(title: text, note: data)
+            delegate?.changeTitle(title: text, note: data)
         }
     }
     
     func textViewDidChange(_ textView: UITextView) {
         if let text = textView.text {
-            delegate.changeText(text: text, note: data)
+            delegate?.changeText(text: text, note: data)
         }
     }
 }

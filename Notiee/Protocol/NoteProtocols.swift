@@ -7,8 +7,14 @@
 //
 
 import Foundation
+import UIKit
 
-protocol NoteDataDelegate {
+protocol NoteDelegate: class {
     func changeTitle(title:String, note:Note)
     func changeText(text:String, note:Note)
+    func updateLayout(_ cell: NoteViewCell, with newSize: CGSize)
+}
+
+protocol NoteTextDelegate: class {
+    func updateFrame(_ textView: UITextView)
 }
