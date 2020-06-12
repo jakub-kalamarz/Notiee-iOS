@@ -31,7 +31,8 @@ class NoteViewCell: UICollectionViewCell {
 
     
     var indicator:CategoryIndicator = {
-        let indicator = CategoryIndicator(color: UIColor(red: 27/255, green: 20/255, blue: 100/255, alpha: 1).cgColor)
+        //let indicator = CategoryIndicator(color: UIColor(red: 27/255, green: 20/255, blue: 100/255, alpha: 1).cgColor)
+        let indicator = CategoryIndicator()
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
@@ -56,6 +57,7 @@ class NoteViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
 
         
         self.addSubview(indicator)
@@ -63,10 +65,13 @@ class NoteViewCell: UICollectionViewCell {
         self.addSubview(paragraph)
         paragraph.coustomDelegate = self
         
+        self.isUserInteractionEnabled = true
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress))
+        self.addGestureRecognizer(gesture)
+        
         title.delegate = self
         title.addTarget(self, action: #selector(titleChanged(_:)), for: .editingChanged)
         paragraph.delegate = self
-        
 
         NSLayoutConstraint.activate([
             indicator.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 5),
@@ -75,7 +80,7 @@ class NoteViewCell: UICollectionViewCell {
             indicator.heightAnchor.constraint(equalTo: self.heightAnchor),
             
             title.topAnchor.constraint(equalTo: contentView.topAnchor),
-            title.leadingAnchor.constraint(equalTo: indicator.trailingAnchor),
+            title.leadingAnchor.constraint(equalTo: indicator.trailingAnchor, constant: 5),
             title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             paragraph.topAnchor.constraint(equalTo: title.bottomAnchor),
@@ -83,6 +88,13 @@ class NoteViewCell: UICollectionViewCell {
             paragraph.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         
         ])
+    }
+    
+    @objc
+    func longPress(_ sender:UIGestureRecognizer) {
+        if sender.state == .began {
+            print("category change")
+        }
     }
 
     
@@ -118,11 +130,13 @@ extension NoteViewCell: UITextFieldDelegate, UITextViewDelegate {
         if let text = textfield.text {
             delegate?.changeTitle(title: text, note: data)
         }
+        Store.save()
     }
     
     func textViewDidChange(_ textView: UITextView) {
         if let text = textView.text {
             delegate?.changeText(text: text, note: data)
         }
+        Store.save()
     }
 }

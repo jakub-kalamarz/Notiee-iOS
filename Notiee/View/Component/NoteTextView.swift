@@ -13,6 +13,8 @@ class NoteTextView: UITextView {
     weak var coustomDelegate: NoteTextDelegate?
     
     override var contentSize: CGSize {
-        didSet { coustomDelegate?.updateFrame(self) }
+        didSet {
+            coustomDelegate?.updateFrame(self)
+        }
     }
 }

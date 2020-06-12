@@ -19,5 +19,6 @@ extension Note {
     @NSManaged public var title: String?
     @NSManaged public var text: String?
     @NSManaged public var category: Category?
+    @NSManaged public var color: String?
 
 }

@@ -28,9 +28,11 @@ class ViewController: UIViewController {
         return cv
     }()
     
+    private lazy var emptyState = EmptyState()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.setupUI()
     }
     
@@ -68,12 +70,27 @@ extension ViewController {
         ])
     }
     
+    func setupEmptyState() {
+        self.view.addSubview(emptyState)
+        emptyState.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            emptyState.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.5),
+            emptyState.widthAnchor.constraint(equalTo: emptyState.heightAnchor),
+            emptyState.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor),
+            emptyState.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
+        ])
+    }
 }
 
 
 extension ViewController:UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return notes.count
+        let count = notes.count
+        if count == 0 {
+            setupEmptyState()
+        }
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -86,7 +103,13 @@ extension ViewController:UICollectionViewDelegateFlowLayout, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        cells[indexPath.row]
+        if let size = cells[safeIndex: indexPath.row] {
+            return size
+        } else {
+            print(indexPath.row)
+            cells.append(newCellSize)
+            return newCellSize
+        }
     }
 
 
@@ -96,8 +119,6 @@ extension ViewController: NoteDelegate {
     func updateLayout(_ cell: NoteViewCell, with newSize: CGSize) {
         let height = newSize.height
         cells[cell.index] = CGSize(width: newCellSize.width, height: height)
-        print("W: \(newSize.width) \nH: \(newSize.height)")
-        
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
