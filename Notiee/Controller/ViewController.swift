@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         return cv
     }()
     
-    private lazy var emptyState = EmptyState()
+    private lazy var emptyState = EmptyState(frame: self.view.safeAreaLayoutGuide.layoutFrame)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,14 +72,6 @@ extension ViewController {
     
     func setupEmptyState() {
         self.view.addSubview(emptyState)
-        emptyState.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            emptyState.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.5),
-            emptyState.widthAnchor.constraint(equalTo: emptyState.heightAnchor),
-            emptyState.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor),
-            emptyState.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
-        ])
     }
 }
 
@@ -88,7 +80,9 @@ extension ViewController:UICollectionViewDelegateFlowLayout, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let count = notes.count
         if count == 0 {
-            setupEmptyState()
+            self.setupEmptyState()
+        } else {
+            self.emptyState.removeFromSuperview()
         }
         return count
     }
@@ -106,16 +100,25 @@ extension ViewController:UICollectionViewDelegateFlowLayout, UICollectionViewDat
         if let size = cells[safeIndex: indexPath.row] {
             return size
         } else {
-            print(indexPath.row)
             cells.append(newCellSize)
             return newCellSize
         }
     }
-
-
 }
 
 extension ViewController: NoteDelegate {
+    func setAlarm(note for: Note) {
+        print("Alarm")
+    }
+    
+    func setPeople(note for: Note) {
+        print("People")
+    }
+    
+    func setMap(note for: Note) {
+        print("Map")
+    }
+    
     func updateLayout(_ cell: NoteViewCell, with newSize: CGSize) {
         let height = newSize.height
         cells[cell.index] = CGSize(width: newCellSize.width, height: height)

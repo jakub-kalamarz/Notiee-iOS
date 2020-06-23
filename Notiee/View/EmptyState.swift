@@ -20,19 +20,12 @@ class EmptyState: UIView {
         titleLabel.textAlignment = .center
         titleLabel.font = .boldSystemFont(ofSize: 22)
         
-        
-        let image = UIImage(named: "cat")
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = .scaleAspectFit
-        
-        self.addSubview(imageView)
         self.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalTo: widthAnchor),
-            titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor),
-            titleLabel.widthAnchor.constraint(equalTo: imageView.widthAnchor)
+            titleLabel.widthAnchor.constraint(equalTo: self.widthAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10)
         ])
     }
     

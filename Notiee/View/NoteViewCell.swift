@@ -30,14 +30,13 @@ class NoteViewCell: UICollectionViewCell {
     }
 
     
-    var indicator:CategoryIndicator = {
-        //let indicator = CategoryIndicator(color: UIColor(red: 27/255, green: 20/255, blue: 100/255, alpha: 1).cgColor)
+    private var indicator:CategoryIndicator = {
         let indicator = CategoryIndicator()
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
     
-    var title:UITextField = {
+    private var title:UITextField = {
         let tf = UITextField()
         tf.font = .boldSystemFont(ofSize: 25)
         tf.placeholder = "Title"
@@ -54,20 +53,54 @@ class NoteViewCell: UICollectionViewCell {
         return tv
     }()
     
+    private var iconStack:UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.distribution = .fillEqually
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    private var alarmIcon:UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "alarm.fill"), for: .normal)
+        return button
+    }()
+    
+    private var peopleIcon:UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "person.fill"), for: .normal)
+        button.tintColor = .systemGray
+        return button
+    }()
+    
+    private var mapIcon:UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "map.fill"), for: .normal)
+        return button
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
+        indicator.isUserInteractionEnabled = true
+        indicator.addGestureRecognizer(gesture)
         
-        self.addSubview(indicator)
-        self.addSubview(title)
-        self.addSubview(paragraph)
+        iconStack.addArrangedSubview(alarmIcon)
+        iconStack.addArrangedSubview(peopleIcon)
+        iconStack.addArrangedSubview(mapIcon)
+        
+        alarmIcon.addTarget(self, action: #selector(alarmAction), for: .touchUpInside)
+        peopleIcon.addTarget(self, action: #selector(peopleAction), for: .touchUpInside)
+        mapIcon.addTarget(self, action: #selector(mapAction), for: .touchUpInside)
+        
+        self.contentView.addSubview(iconStack)
+        self.contentView.addSubview(indicator)
+        self.contentView.addSubview(title)
+        self.contentView.addSubview(paragraph)
         paragraph.coustomDelegate = self
-        
-        self.isUserInteractionEnabled = true
-        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress))
-        self.addGestureRecognizer(gesture)
         
         title.delegate = self
         title.addTarget(self, action: #selector(titleChanged(_:)), for: .editingChanged)
@@ -79,9 +112,14 @@ class NoteViewCell: UICollectionViewCell {
             indicator.widthAnchor.constraint(equalToConstant: 7),
             indicator.heightAnchor.constraint(equalTo: self.heightAnchor),
             
+            iconStack.heightAnchor.constraint(equalTo: title.heightAnchor),
+            iconStack.widthAnchor.constraint(equalToConstant: 100),
+            iconStack.topAnchor.constraint(equalTo: contentView.topAnchor),
+            iconStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
             title.topAnchor.constraint(equalTo: contentView.topAnchor),
             title.leadingAnchor.constraint(equalTo: indicator.trailingAnchor, constant: 5),
-            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            title.trailingAnchor.constraint(equalTo: iconStack.leadingAnchor),
             
             paragraph.topAnchor.constraint(equalTo: title.bottomAnchor),
             paragraph.leadingAnchor.constraint(equalTo: indicator.trailingAnchor),
@@ -95,6 +133,21 @@ class NoteViewCell: UICollectionViewCell {
         if sender.state == .began {
             print("category change")
         }
+    }
+    
+    @objc
+    func alarmAction() {
+        delegate?.setAlarm(note: self.data)
+    }
+    
+    @objc
+    func peopleAction() {
+        delegate?.setPeople(note: self.data)
+    }
+    
+    @objc
+    func mapAction() {
+        delegate?.setMap(note: self.data)
     }
 
     
