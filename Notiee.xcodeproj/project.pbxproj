@@ -15,6 +15,8 @@
 		8C5DC4CB2477EEB100236E94 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DC4C72477EEB100236E94 /* Note+CoreDataClass.swift */; };
 		8C5DC4CC2477EEB100236E94 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DC4C82477EEB100236E94 /* Note+CoreDataProperties.swift */; };
 		8C6C1499247DA8CC0006FEC7 /* NoteTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C1498247DA8CC0006FEC7 /* NoteTextView.swift */; };
+		8C75578024A5393A001F96C2 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C75577F24A5393A001F96C2 /* CategoryTableViewController.swift */; };
+		8C75578224A53B04001F96C2 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C75578124A53B04001F96C2 /* CategoryTableViewCell.swift */; };
 		8C763AF024840BB800E336EF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C763AEF24840BB800E336EF /* UIColorExtension.swift */; };
 		8C769E5824790E0C004AC842 /* NoteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C769E5724790E0C004AC842 /* NoteViewCell.swift */; };
 		8C7BF4892477E2AF00088387 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C7BF4872477E2AF00088387 /* Main.storyboard */; };
@@ -27,6 +29,7 @@
 		8CE5C25A2477FC5B00834129 /* CategoryIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE5C2592477FC5B00834129 /* CategoryIndicator.swift */; };
 		8CE5C25D247871F200834129 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE5C25C247871F200834129 /* CoreDataStore.swift */; };
 		8CEF98DC2481A6D000603B1F /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEF98DB2481A6D000603B1F /* ArrayExtension.swift */; };
+		8CF5094224A80C6300B0DF71 /* CategoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF5094124A80C6300B0DF71 /* CategoryProtocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,8 @@
 		8C5DC4C72477EEB100236E94 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8C5DC4C82477EEB100236E94 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8C6C1498247DA8CC0006FEC7 /* NoteTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTextView.swift; sourceTree = "<group>"; };
+		8C75577F24A5393A001F96C2 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		8C75578124A53B04001F96C2 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryTableViewCell.swift; path = Notiee/View/Cells/CategoryTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		8C763AEF24840BB800E336EF /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		8C769E5724790E0C004AC842 /* NoteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewCell.swift; sourceTree = "<group>"; };
 		8C7BF4882477E2AF00088387 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -52,6 +57,7 @@
 		8CE5C2592477FC5B00834129 /* CategoryIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryIndicator.swift; sourceTree = "<group>"; };
 		8CE5C25C247871F200834129 /* CoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
 		8CEF98DB2481A6D000603B1F /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		8CF5094124A80C6300B0DF71 /* CategoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryProtocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				8C45DEDA247AA25D00988D4A /* NoteProtocols.swift */,
+				8CF5094124A80C6300B0DF71 /* CategoryProtocols.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -94,10 +101,20 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8C75578324A53E3B001F96C2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8C769E5724790E0C004AC842 /* NoteViewCell.swift */,
+				8C75578124A53B04001F96C2 /* CategoryTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		8C7BF48A2477E2F700088387 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				8CE303C72477BD630063B29D /* ViewController.swift */,
+				8C75577F24A5393A001F96C2 /* CategoryTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -149,7 +166,7 @@
 		8CE5C2552477F77E00834129 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8C769E5724790E0C004AC842 /* NoteViewCell.swift */,
+				8C75578324A53E3B001F96C2 /* Cells */,
 				8C01762124940DAF006680AB /* EmptyState.swift */,
 				8CE5C2582477FBCA00834129 /* Component */,
 			);
@@ -245,10 +262,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CEF98DC2481A6D000603B1F /* ArrayExtension.swift in Sources */,
+				8CF5094224A80C6300B0DF71 /* CategoryProtocols.swift in Sources */,
 				8C45DEDB247AA25D00988D4A /* NoteProtocols.swift in Sources */,
 				8CE303C82477BD630063B29D /* ViewController.swift in Sources */,
 				8C01762224940DAF006680AB /* EmptyState.swift in Sources */,
 				8C5DC4CC2477EEB100236E94 /* Note+CoreDataProperties.swift in Sources */,
+				8C75578024A5393A001F96C2 /* CategoryTableViewController.swift in Sources */,
 				8C5DC4CB2477EEB100236E94 /* Note+CoreDataClass.swift in Sources */,
 				8C769E5824790E0C004AC842 /* NoteViewCell.swift in Sources */,
 				8C6C1499247DA8CC0006FEC7 /* NoteTextView.swift in Sources */,
@@ -257,6 +276,7 @@
 				8C5DC4CA2477EEB100236E94 /* Category+CoreDataProperties.swift in Sources */,
 				8CE303C42477BD630063B29D /* AppDelegate.swift in Sources */,
 				8C763AF024840BB800E336EF /* UIColorExtension.swift in Sources */,
+				8C75578224A53B04001F96C2 /* CategoryTableViewCell.swift in Sources */,
 				8CE303C62477BD630063B29D /* SceneDelegate.swift in Sources */,
 				8C5DC4C92477EEB100236E94 /* Category+CoreDataClass.swift in Sources */,
 				8CE5C25A2477FC5B00834129 /* CategoryIndicator.swift in Sources */,

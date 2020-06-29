@@ -13,9 +13,10 @@ protocol NoteDelegate: class {
     func changeTitle(title:String, note:Note)
     func changeText(text:String, note:Note)
     func updateLayout(_ cell: NoteViewCell, with newSize: CGSize)
-    func setAlarm(note for:Note)
-    func setPeople(note for:Note)
-    func setMap(note for:Note)
+    func setAlarm(for note:Note)
+    func setPeople(for note:Note)
+    func setMap(for note:Note)
+    func setCategory(for note:Note)
 }
 
 protocol NoteTextDelegate: class {

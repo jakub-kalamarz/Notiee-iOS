@@ -20,6 +20,7 @@ struct Store {
         
         return context
     }()
+    
     // MARK:- Notes methods
     
     static func newNote() -> Note {
@@ -57,6 +58,16 @@ struct Store {
             try context.execute(batchDelete)
         } catch {
             fatalError("Failed to delete notes: \(error)")
+        }
+    }
+    
+    static func fetchCategories() -> [Category] {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
+        do {
+            let result = try context.fetch(request) as! [Category]
+            return result
+        } catch {
+            fatalError("Failed to fetch categories: \(error)")
         }
     }
 }

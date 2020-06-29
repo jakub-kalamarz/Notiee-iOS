@@ -65,19 +65,21 @@ class NoteViewCell: UICollectionViewCell {
     private var alarmIcon:UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "alarm.fill"), for: .normal)
+        button.tintColor = .gray
         return button
     }()
     
     private var peopleIcon:UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "person.fill"), for: .normal)
-        button.tintColor = .systemGray
+        button.tintColor = .gray
         return button
     }()
     
     private var mapIcon:UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "map.fill"), for: .normal)
+        button.tintColor = .gray
         return button
     }()
     
@@ -131,23 +133,23 @@ class NoteViewCell: UICollectionViewCell {
     @objc
     func longPress(_ sender:UIGestureRecognizer) {
         if sender.state == .began {
-            print("category change")
+            delegate?.setCategory(for: self.data)
         }
     }
     
     @objc
     func alarmAction() {
-        delegate?.setAlarm(note: self.data)
+        delegate?.setAlarm(for: self.data)
     }
     
     @objc
     func peopleAction() {
-        delegate?.setPeople(note: self.data)
+        delegate?.setPeople(for: self.data)
     }
     
     @objc
     func mapAction() {
-        delegate?.setMap(note: self.data)
+        delegate?.setMap(for: self.data)
     }
 
     

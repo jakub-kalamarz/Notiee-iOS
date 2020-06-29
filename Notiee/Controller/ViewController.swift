@@ -107,15 +107,22 @@ extension ViewController:UICollectionViewDelegateFlowLayout, UICollectionViewDat
 }
 
 extension ViewController: NoteDelegate {
-    func setAlarm(note for: Note) {
+    func setCategory(for: Note) {
+        print("Category")
+        let vc = CategoryTableViewController()
+        let nc = UINavigationController(rootViewController: vc)
+        self.navigationController?.present(nc, animated: true, completion: nil)
+    }
+    
+    func setAlarm(for: Note) {
         print("Alarm")
     }
     
-    func setPeople(note for: Note) {
+    func setPeople(for: Note) {
         print("People")
     }
     
-    func setMap(note for: Note) {
+    func setMap(for: Note) {
         print("Map")
     }
     
