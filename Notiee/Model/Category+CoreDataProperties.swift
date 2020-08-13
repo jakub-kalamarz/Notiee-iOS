@@ -19,6 +19,7 @@ extension Category {
 
     @NSManaged public var title: String?
     @NSManaged public var notes: NSSet?
+    @NSManaged public var color: String?
 
 }
 

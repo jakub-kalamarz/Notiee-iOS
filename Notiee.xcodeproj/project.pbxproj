@@ -15,11 +15,11 @@
 		8C5DC4CB2477EEB100236E94 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DC4C72477EEB100236E94 /* Note+CoreDataClass.swift */; };
 		8C5DC4CC2477EEB100236E94 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5DC4C82477EEB100236E94 /* Note+CoreDataProperties.swift */; };
 		8C6C1499247DA8CC0006FEC7 /* NoteTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C1498247DA8CC0006FEC7 /* NoteTextView.swift */; };
-		8C75578024A5393A001F96C2 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C75577F24A5393A001F96C2 /* CategoryTableViewController.swift */; };
-		8C75578224A53B04001F96C2 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C75578124A53B04001F96C2 /* CategoryTableViewCell.swift */; };
+		8C6D21A224E1F92E00360E44 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6D21A124E1F92E00360E44 /* AddCategoryViewController.swift */; };
 		8C763AF024840BB800E336EF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C763AEF24840BB800E336EF /* UIColorExtension.swift */; };
 		8C769E5824790E0C004AC842 /* NoteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C769E5724790E0C004AC842 /* NoteViewCell.swift */; };
 		8C7BF4892477E2AF00088387 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C7BF4872477E2AF00088387 /* Main.storyboard */; };
+		8CA2F1AF24D563D300E39294 /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA2F1AE24D563D300E39294 /* CategoryViewCell.swift */; };
 		8CE303C42477BD630063B29D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE303C32477BD630063B29D /* AppDelegate.swift */; };
 		8CE303C62477BD630063B29D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE303C52477BD630063B29D /* SceneDelegate.swift */; };
 		8CE303C82477BD630063B29D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE303C72477BD630063B29D /* ViewController.swift */; };
@@ -29,10 +29,14 @@
 		8CE5C25A2477FC5B00834129 /* CategoryIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE5C2592477FC5B00834129 /* CategoryIndicator.swift */; };
 		8CE5C25D247871F200834129 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE5C25C247871F200834129 /* CoreDataStore.swift */; };
 		8CEF98DC2481A6D000603B1F /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEF98DB2481A6D000603B1F /* ArrayExtension.swift */; };
+		8CF43CB024AE4987007135DA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF43CAF24AE4987007135DA /* MapViewController.swift */; };
 		8CF5094224A80C6300B0DF71 /* CategoryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF5094124A80C6300B0DF71 /* CategoryProtocols.swift */; };
+		8CFE104424DB375200CF798B /* AddCategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE104324DB375200CF798B /* AddCategoryViewCell.swift */; };
+		9CE331E9E48D06E396246FD9 /* Pods_Notiee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C337B46BA2212AC16DD1B096 /* Pods_Notiee.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		335EC8A88B4C813645EDEF49 /* Pods-Notiee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notiee.release.xcconfig"; path = "Target Support Files/Pods-Notiee/Pods-Notiee.release.xcconfig"; sourceTree = "<group>"; };
 		8C01762124940DAF006680AB /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
 		8C39A79B2479205D005F6DD7 /* CollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewExtension.swift; sourceTree = "<group>"; };
 		8C45DEDA247AA25D00988D4A /* NoteProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteProtocols.swift; sourceTree = "<group>"; };
@@ -41,11 +45,11 @@
 		8C5DC4C72477EEB100236E94 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8C5DC4C82477EEB100236E94 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8C6C1498247DA8CC0006FEC7 /* NoteTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTextView.swift; sourceTree = "<group>"; };
-		8C75577F24A5393A001F96C2 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
-		8C75578124A53B04001F96C2 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryTableViewCell.swift; path = Notiee/View/Cells/CategoryTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		8C6D21A124E1F92E00360E44 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddCategoryViewController.swift; path = Notiee/Controller/AddCategoryViewController.swift; sourceTree = SOURCE_ROOT; };
 		8C763AEF24840BB800E336EF /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		8C769E5724790E0C004AC842 /* NoteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewCell.swift; sourceTree = "<group>"; };
 		8C7BF4882477E2AF00088387 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8CA2F1AE24D563D300E39294 /* CategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
 		8CE303C02477BD630063B29D /* Notiee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notiee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CE303C32477BD630063B29D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CE303C52477BD630063B29D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,7 +61,11 @@
 		8CE5C2592477FC5B00834129 /* CategoryIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryIndicator.swift; sourceTree = "<group>"; };
 		8CE5C25C247871F200834129 /* CoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
 		8CEF98DB2481A6D000603B1F /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
+		8CF43CAF24AE4987007135DA /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		8CF5094124A80C6300B0DF71 /* CategoryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryProtocols.swift; sourceTree = "<group>"; };
+		8CFE104324DB375200CF798B /* AddCategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewCell.swift; sourceTree = "<group>"; };
+		C337B46BA2212AC16DD1B096 /* Pods_Notiee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Notiee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D77259428276D152B580EF24 /* Pods-Notiee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notiee.debug.xcconfig"; path = "Target Support Files/Pods-Notiee/Pods-Notiee.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,12 +73,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CE331E9E48D06E396246FD9 /* Pods_Notiee.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		803022ABF4C3E1D0F5A662A7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C337B46BA2212AC16DD1B096 /* Pods_Notiee.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		80E0D8E6532A464DAA0331C4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D77259428276D152B580EF24 /* Pods-Notiee.debug.xcconfig */,
+				335EC8A88B4C813645EDEF49 /* Pods-Notiee.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8C39A79A2479204B005F6DD7 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,7 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				8C769E5724790E0C004AC842 /* NoteViewCell.swift */,
-				8C75578124A53B04001F96C2 /* CategoryTableViewCell.swift */,
+				8CA2F1AE24D563D300E39294 /* CategoryViewCell.swift */,
+				8CFE104324DB375200CF798B /* AddCategoryViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -113,8 +140,9 @@
 		8C7BF48A2477E2F700088387 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8C6D21A124E1F92E00360E44 /* AddCategoryViewController.swift */,
 				8CE303C72477BD630063B29D /* ViewController.swift */,
-				8C75577F24A5393A001F96C2 /* CategoryTableViewController.swift */,
+				8CF43CAF24AE4987007135DA /* MapViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -133,6 +161,8 @@
 			children = (
 				8CE303C22477BD630063B29D /* Notiee */,
 				8CE303C12477BD630063B29D /* Products */,
+				80E0D8E6532A464DAA0331C4 /* Pods */,
+				803022ABF4C3E1D0F5A662A7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -197,6 +227,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8CE303D72477BD680063B29D /* Build configuration list for PBXNativeTarget "Notiee" */;
 			buildPhases = (
+				6648144C79CEE418F6F5DF4B /* [CP] Check Pods Manifest.lock */,
 				8CE303BC2477BD630063B29D /* Sources */,
 				8CE303BD2477BD630063B29D /* Frameworks */,
 				8CE303BE2477BD630063B29D /* Resources */,
@@ -256,6 +287,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6648144C79CEE418F6F5DF4B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Notiee-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8CE303BC2477BD630063B29D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -267,16 +323,18 @@
 				8CE303C82477BD630063B29D /* ViewController.swift in Sources */,
 				8C01762224940DAF006680AB /* EmptyState.swift in Sources */,
 				8C5DC4CC2477EEB100236E94 /* Note+CoreDataProperties.swift in Sources */,
-				8C75578024A5393A001F96C2 /* CategoryTableViewController.swift in Sources */,
 				8C5DC4CB2477EEB100236E94 /* Note+CoreDataClass.swift in Sources */,
+				8CF43CB024AE4987007135DA /* MapViewController.swift in Sources */,
 				8C769E5824790E0C004AC842 /* NoteViewCell.swift in Sources */,
 				8C6C1499247DA8CC0006FEC7 /* NoteTextView.swift in Sources */,
+				8C6D21A224E1F92E00360E44 /* AddCategoryViewController.swift in Sources */,
+				8CFE104424DB375200CF798B /* AddCategoryViewCell.swift in Sources */,
 				8C39A79C2479205D005F6DD7 /* CollectionViewExtension.swift in Sources */,
 				8CE5C25D247871F200834129 /* CoreDataStore.swift in Sources */,
 				8C5DC4CA2477EEB100236E94 /* Category+CoreDataProperties.swift in Sources */,
 				8CE303C42477BD630063B29D /* AppDelegate.swift in Sources */,
+				8CA2F1AF24D563D300E39294 /* CategoryViewCell.swift in Sources */,
 				8C763AF024840BB800E336EF /* UIColorExtension.swift in Sources */,
-				8C75578224A53B04001F96C2 /* CategoryTableViewCell.swift in Sources */,
 				8CE303C62477BD630063B29D /* SceneDelegate.swift in Sources */,
 				8C5DC4C92477EEB100236E94 /* Category+CoreDataClass.swift in Sources */,
 				8CE5C25A2477FC5B00834129 /* CategoryIndicator.swift in Sources */,
@@ -424,6 +482,7 @@
 		};
 		8CE303D82477BD680063B29D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D77259428276D152B580EF24 /* Pods-Notiee.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -444,6 +503,7 @@
 		};
 		8CE303D92477BD680063B29D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 335EC8A88B4C813645EDEF49 /* Pods-Notiee.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";

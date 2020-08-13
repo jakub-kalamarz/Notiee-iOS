@@ -11,6 +11,7 @@ import UIKit
 import CoreData
 
 struct Store {
+    
     static let context: NSManagedObjectContext = {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             fatalError()
@@ -69,5 +70,25 @@ struct Store {
         } catch {
             fatalError("Failed to fetch categories: \(error)")
         }
+    }
+    
+    static func colors() -> [String] {
+        return["#fad390","#f6b93b","#fa983a","#e58e26","#f8c291","#e55039","#eb2f06","#b71540","#6a89cc","#4a69bd","#1e3799","#0c2461","#82ccdd","#60a3bc","#3c6382","#0a3d62","#b8e994","#78e08f","#38ada9","#079992"]
+        
+    }
+    
+    static func getRandomColor() -> CGColor {
+        let colors = ["#fad390","#f6b93b","#fa983a","#e58e26","#f8c291","#e55039","#eb2f06","#b71540","#6a89cc","#4a69bd","#1e3799","#0c2461","#82ccdd","#60a3bc","#3c6382","#0a3d62","#b8e994","#78e08f","#38ada9","#079992"]
+        let selectedColor = colors.randomElement()
+        let color = UIColor(hex: selectedColor!)
+        let cgColor = color!.cgColor
+        return cgColor
+    }
+    
+    static func getRandomStringColor() -> String {
+        if let selectedColor = colors().randomElement() {
+            return selectedColor
+        }
+        return "#fad390"
     }
 }

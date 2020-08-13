@@ -38,7 +38,7 @@ class NoteViewCell: UICollectionViewCell {
     
     private var title:UITextField = {
         let tf = UITextField()
-        tf.font = .boldSystemFont(ofSize: 25)
+        tf.font = .boldSystemFont(ofSize: 22)
         tf.placeholder = "Title"
         tf.translatesAutoresizingMaskIntoConstraints = false
         return tf
@@ -46,7 +46,7 @@ class NoteViewCell: UICollectionViewCell {
     
     private var paragraph:NoteTextView = {
         let tv = NoteTextView()
-        tv.font = .boldSystemFont(ofSize: 20)
+        tv.font = .boldSystemFont(ofSize: 18)
         tv.isScrollEnabled = false
         tv.textContainer.lineBreakMode = .byWordWrapping
         tv.translatesAutoresizingMaskIntoConstraints = false
@@ -78,7 +78,7 @@ class NoteViewCell: UICollectionViewCell {
     
     private var mapIcon:UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "map.fill"), for: .normal)
+        button.setImage(UIImage(systemName: "mappin.circle"), for: .normal)
         button.tintColor = .gray
         return button
     }()
@@ -90,15 +90,15 @@ class NoteViewCell: UICollectionViewCell {
         indicator.isUserInteractionEnabled = true
         indicator.addGestureRecognizer(gesture)
         
-        iconStack.addArrangedSubview(alarmIcon)
-        iconStack.addArrangedSubview(peopleIcon)
-        iconStack.addArrangedSubview(mapIcon)
+        //iconStack.addArrangedSubview(alarmIcon)
+        //iconStack.addArrangedSubview(peopleIcon)
+        //iconStack.addArrangedSubview(mapIcon)
         
-        alarmIcon.addTarget(self, action: #selector(alarmAction), for: .touchUpInside)
-        peopleIcon.addTarget(self, action: #selector(peopleAction), for: .touchUpInside)
-        mapIcon.addTarget(self, action: #selector(mapAction), for: .touchUpInside)
+        //alarmIcon.addTarget(self, action: #selector(alarmAction), for: .touchUpInside)
+        //peopleIcon.addTarget(self, action: #selector(peopleAction), for: .touchUpInside)
+        //mapIcon.addTarget(self, action: #selector(mapAction), for: .touchUpInside)
         
-        self.contentView.addSubview(iconStack)
+        //self.contentView.addSubview(iconStack)
         self.contentView.addSubview(indicator)
         self.contentView.addSubview(title)
         self.contentView.addSubview(paragraph)
@@ -113,15 +113,15 @@ class NoteViewCell: UICollectionViewCell {
             indicator.topAnchor.constraint(equalTo: self.topAnchor),
             indicator.widthAnchor.constraint(equalToConstant: 7),
             indicator.heightAnchor.constraint(equalTo: self.heightAnchor),
-            
+            /*
             iconStack.heightAnchor.constraint(equalTo: title.heightAnchor),
             iconStack.widthAnchor.constraint(equalToConstant: 100),
             iconStack.topAnchor.constraint(equalTo: contentView.topAnchor),
             iconStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            
+            */
             title.topAnchor.constraint(equalTo: contentView.topAnchor),
             title.leadingAnchor.constraint(equalTo: indicator.trailingAnchor, constant: 5),
-            title.trailingAnchor.constraint(equalTo: iconStack.leadingAnchor),
+            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             paragraph.topAnchor.constraint(equalTo: title.bottomAnchor),
             paragraph.leadingAnchor.constraint(equalTo: indicator.trailingAnchor),

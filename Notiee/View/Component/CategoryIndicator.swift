@@ -22,7 +22,7 @@ class CategoryIndicator: UIView {
     
     init() {
         super.init(frame: .zero)
-        self.color = UIColor.getRandomColor(.brown)()
+        self.color = Store.getRandomColor()
         
         self.layer.backgroundColor = color
         self.layer.cornerRadius = 2

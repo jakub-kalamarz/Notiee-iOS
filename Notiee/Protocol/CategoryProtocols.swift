@@ -10,4 +10,5 @@ import Foundation
 
 protocol categoryDelegate: class {
     func selectedCategory(category:Category)
+    func addCategory()
 }
