@@ -12,6 +12,8 @@ class NoteTextView: UITextView {
     
     weak var coustomDelegate: NoteTextDelegate?
     
+    var numberOfLines = 0
+    
     override var contentSize: CGSize {
         didSet {
             coustomDelegate?.updateFrame(self)

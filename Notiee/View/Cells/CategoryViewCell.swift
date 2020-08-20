@@ -8,22 +8,24 @@
 
 import UIKit
 
+protocol CategoryCellDelegate {
+    func showAlert(category: Category)
+}
+
 class CategoryViewCell: UICollectionViewCell {
     
-    /*
+    var delegate:CategoryCellDelegate!
+    
     var data:Category! {
         didSet {
             title.text = data.title
+            if let colorString = data.color {
+                let color = UIColor(hex: colorString)
+                layer.backgroundColor = color?.cgColor
+            }
         }
     }
-     */
-    
-    var data:String! {
-        didSet {
-            title.text = data
-        }
-    }
-    
+
     var title:UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 22)
@@ -58,5 +60,15 @@ class CategoryViewCell: UICollectionViewCell {
         layer.backgroundColor = Store.getRandomColor()
         layer.cornerRadius = 12
         layer.masksToBounds = true
+        
+        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
+        self.addGestureRecognizer(gesture)
+    }
+    
+    @objc
+    func longPress(_ sender: UIGestureRecognizer) {
+        if sender.state == .began {
+            delegate.showAlert(category: data)
+        }
     }
 }

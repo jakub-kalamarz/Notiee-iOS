@@ -167,7 +167,8 @@ class NoteViewCell: UICollectionViewCell {
 
 extension NoteViewCell: NoteTextDelegate {
     func updateFrame(_ textView: UITextView) {
-        let height = textView.contentSize.height + title.frame.height
+        let size = title.frame.height + textView.contentSize.height
+        let height = size
         let newSize = CGSize(width: 0, height: height)
         delegate?.updateLayout(self, with: newSize)
     }

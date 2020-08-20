@@ -12,8 +12,7 @@ class ViewController: UIViewController {
     
     var notes = Store.fetchNote()
     
-    //var categories = Store.fetchCategories()
-    var categories = ["First","Second","Third","Fourth","Last"]
+    var categories = Store.fetchCategories()
     //let categories:[Category] = []
     
     var cells:[CGSize] = [CGSize]()
@@ -141,6 +140,7 @@ extension ViewController:UICollectionViewDelegateFlowLayout, UICollectionViewDat
                 let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "category", for: indexPath) as! CategoryViewCell
                 let category = categories[index]
                 cell.data = category
+                cell.delegate = self
                 return cell
             } else {
                 let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "add", for: indexPath) as! AddCategoryViewCell
@@ -208,10 +208,41 @@ extension ViewController: NoteDelegate {
     }
 }
 //MARK:- Add Category Methods
-extension ViewController:AddCategoryDelegate {
+extension ViewController:AddCategoryDelegate, CategoryCellDelegate {
+    func showAlert(category: Category) {
+        
+        let alert = UIAlertController(title: "Menu", message: "Please Select an Option for \(category.title ?? "Category")", preferredStyle: .actionSheet)
+
+        alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: { (_) in
+            print("User click Edit button")
+        }))
+
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
+            Store.delete(category)
+        }))
+
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { (_) in
+            print("User click Dismiss button")
+        }))
+
+        self.present(alert, animated: true, completion: {
+            self.reloadTables()
+        })
+    }
+    
     func addCategoryAction() {
         let vc = AddCategoryViewController()
-        navigationController?.present(vc, animated: true, completion: nil)
+        navigationController?.present(vc, animated: true, completion: {
+            print("xd")
+            self.reloadTables()
+        })
+    }
+    
+    func reloadTables() {
+        print(categories.count)
+        self.categories = Store.fetchCategories()
+        self.categoryCollectionView.reloadData()
+        print(categories.count)
     }
     
 }

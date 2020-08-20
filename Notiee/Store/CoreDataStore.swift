@@ -22,24 +22,6 @@ struct Store {
         return context
     }()
     
-    // MARK:- Notes methods
-    
-    static func newNote() -> Note {
-        let note = NSEntityDescription.insertNewObject(forEntityName: "Note", into: context) as! Note
-        
-        return note
-    }
-    
-    static func fetchNote() -> [Note] {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Note")
-        do {
-            let result = try context.fetch(request) as! [Note]
-            return result
-        } catch {
-            fatalError("Failed to fetch notes: \(error)")
-        }
-    }
-    
     static func save() -> Void {
         do {
            try context.save()
@@ -52,6 +34,25 @@ struct Store {
         context.delete(object)
     }
     
+    // MARK:- Notes methods
+    
+    static func newNote() -> Note {
+        let note = NSEntityDescription.insertNewObject(forEntityName: "Note", into: context) as! Note
+        
+        return note
+    }
+    
+    static func fetchNote() -> [Note] {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Note")
+        var result = [Note]()
+        do {
+            result = try context.fetch(request) as! [Note]
+        } catch {
+            fatalError("Failed to fetch notes: \(error)")
+        }
+        return result
+    }
+    
     static func deleteAllNotes() {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Note")
         let batchDelete = NSBatchDeleteRequest(fetchRequest: request)
@@ -60,6 +61,11 @@ struct Store {
         } catch {
             fatalError("Failed to delete notes: \(error)")
         }
+    }
+    
+    static func newCategory() -> Category {
+        let category = NSEntityDescription.insertNewObject(forEntityName: "Category", into: context) as! Category
+        return category
     }
     
     static func fetchCategories() -> [Category] {

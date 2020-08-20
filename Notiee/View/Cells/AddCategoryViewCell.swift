@@ -19,7 +19,7 @@ class AddCategoryViewCell: UICollectionViewCell {
     let addButton:UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "plus.app"), for: .normal)
-        button.tintColor = .darkText
+        button.tintColor = .label
         button.translatesAutoresizingMaskIntoConstraints = false
         button.imageView?.translatesAutoresizingMaskIntoConstraints = false
         button.contentMode = .scaleAspectFit

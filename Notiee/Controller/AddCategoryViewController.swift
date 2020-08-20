@@ -8,9 +8,15 @@
 
 import UIKit
 
-class AddCategoryViewController: UIViewController, UITextFieldDelegate {
+class AddCategoryViewController: UIViewController {
     
-    var categoryName = ""
+    let category = Store.newCategory()
+    
+    var categoryName = "" {
+        didSet {
+            self.titleLabel.text = categoryName
+        }
+    }
     var categoryColor = "" {
         didSet {
             self.categoryCard.backgroundColor = UIColor(hex: categoryColor)
@@ -47,6 +53,7 @@ class AddCategoryViewController: UIViewController, UITextFieldDelegate {
     var hiddenTextField:UITextField = {
         let field = UITextField()
         field.isHidden = true
+        field.returnKeyType = .done
         return field
     }()
 
@@ -61,7 +68,6 @@ class AddCategoryViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(categoryCard)
         view.addSubview(titleLabel)
         view.addSubview(hiddenTextField)
-        hiddenTextField.delegate = self
         view.addSubview(reloadButton)
         
         NSLayoutConstraint.activate([
@@ -83,6 +89,8 @@ class AddCategoryViewController: UIViewController, UITextFieldDelegate {
         titleLabel.addGestureRecognizer(tapGesture)
         
         reloadButton.addTarget(self, action: #selector(getRandomColor), for: .touchUpInside)
+        hiddenTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        hiddenTextField.delegate = self
         
         getRandomColor()
         
@@ -96,8 +104,26 @@ class AddCategoryViewController: UIViewController, UITextFieldDelegate {
     
     @objc
     func focusTextField() {
-        print("taped")
-        print(hiddenTextField.canBecomeFirstResponder)
         self.hiddenTextField.becomeFirstResponder()
+    }
+    
+    @objc
+    func textFieldDidChange(_ sender: UITextField) {
+        if let text = sender.text {
+            categoryName = text
+        }
+    }
+}
+extension AddCategoryViewController:UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if !categoryName.isEmpty {
+            category.title = categoryName
+        } else {
+            return false
+        }
+        category.color = categoryColor
+        Store.save()
+        self.dismiss(animated: true, completion: nil)
+        return true
     }
 }
