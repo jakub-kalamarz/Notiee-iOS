@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol NoteTextDelegate: class {
+    func updateFrame(_ textView: UITextView)
+    func backspaceAction()
+}
+
 class NoteTextView: UITextView {
     
     weak var coustomDelegate: NoteTextDelegate?
@@ -17,6 +22,14 @@ class NoteTextView: UITextView {
     override var contentSize: CGSize {
         didSet {
             coustomDelegate?.updateFrame(self)
+        }
+    }
+    
+    override func deleteBackward() {
+        if self.text == "" {
+            coustomDelegate?.backspaceAction()
+        } else {
+            super.deleteBackward()
         }
     }
 }

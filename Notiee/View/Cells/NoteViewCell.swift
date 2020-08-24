@@ -11,8 +11,8 @@ import UIKit
 class NoteViewCell: UICollectionViewCell {
     
     weak var delegate:NoteDelegate?
-    
-    var index: Int!
+
+    var indexPath: IndexPath!
     
     var data:Note! {
         didSet {
@@ -36,8 +36,8 @@ class NoteViewCell: UICollectionViewCell {
         return indicator
     }()
     
-    private var title:UITextField = {
-        let tf = UITextField()
+    private var title:CategoryTitleTextField = {
+        let tf = CategoryTitleTextField()
         tf.font = .boldSystemFont(ofSize: 22)
         tf.placeholder = "Title"
         tf.translatesAutoresizingMaskIntoConstraints = false
@@ -105,6 +105,7 @@ class NoteViewCell: UICollectionViewCell {
         paragraph.coustomDelegate = self
         
         title.delegate = self
+        title.textDelegate = self
         title.addTarget(self, action: #selector(titleChanged(_:)), for: .editingChanged)
         paragraph.delegate = self
 
@@ -137,22 +138,6 @@ class NoteViewCell: UICollectionViewCell {
         }
     }
     
-    @objc
-    func alarmAction() {
-        delegate?.setAlarm(for: self.data)
-    }
-    
-    @objc
-    func peopleAction() {
-        delegate?.setPeople(for: self.data)
-    }
-    
-    @objc
-    func mapAction() {
-        delegate?.setMap(for: self.data)
-    }
-
-    
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         UIView.animate(withDuration: 0.5) {
             self.layoutIfNeeded()
@@ -166,6 +151,10 @@ class NoteViewCell: UICollectionViewCell {
 
 
 extension NoteViewCell: NoteTextDelegate {
+    func backspaceAction() {
+        title.becomeFirstResponder()
+    }
+    
     func updateFrame(_ textView: UITextView) {
         let size = title.frame.height + textView.contentSize.height
         let height = size
@@ -176,7 +165,19 @@ extension NoteViewCell: NoteTextDelegate {
     
 }
 
-extension NoteViewCell: UITextFieldDelegate, UITextViewDelegate {
+extension NoteViewCell: UITextViewDelegate, CoustomTextFieldDelegate {
+    func isDescriptionEmpty() -> Bool {
+        if self.paragraph.text == "" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func deleteNote() {
+        delegate?.deleteNote(note: data, indexPath: indexPath)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         paragraph.becomeFirstResponder()
     }
@@ -196,3 +197,21 @@ extension NoteViewCell: UITextFieldDelegate, UITextViewDelegate {
         Store.save()
     }
 }
+
+protocol CoustomTextFieldDelegate:UITextFieldDelegate {
+    func isDescriptionEmpty() -> Bool
+    func deleteNote()
+}
+
+class CategoryTitleTextField: UITextField {
+    
+    var textDelegate:CoustomTextFieldDelegate!
+    
+    override func deleteBackward() {
+        if text == "" && textDelegate.isDescriptionEmpty() {
+            textDelegate.deleteNote()
+        }
+        super.deleteBackward()
+    }
+}
+

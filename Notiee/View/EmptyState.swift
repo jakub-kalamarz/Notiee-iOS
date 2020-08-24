@@ -13,6 +13,8 @@ class EmptyState: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
         let title = "Add some notes!"
         let titleLabel = UILabel()
         titleLabel.text = title

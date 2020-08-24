@@ -8,9 +8,13 @@
 
 import UIKit
 
+protocol reloadTableDelegate {
+    func insertItem(category: Category)
+}
+
 class AddCategoryViewController: UIViewController {
     
-    let category = Store.newCategory()
+    var delegate: reloadTableDelegate!
     
     var categoryName = "" {
         didSet {
@@ -116,6 +120,9 @@ class AddCategoryViewController: UIViewController {
 }
 extension AddCategoryViewController:UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        let category = Store.newCategory()
+        
         if !categoryName.isEmpty {
             category.title = categoryName
         } else {
@@ -123,7 +130,9 @@ extension AddCategoryViewController:UITextFieldDelegate {
         }
         category.color = categoryColor
         Store.save()
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: {
+            self.delegate.insertItem(category: category)
+        })
         return true
     }
 }

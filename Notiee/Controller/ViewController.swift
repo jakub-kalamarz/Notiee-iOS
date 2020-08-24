@@ -8,12 +8,12 @@
 
 import UIKit
 
+//MARK:- Property Methods
 class ViewController: UIViewController {
     
     var notes = Store.fetchNote()
     
     var categories = Store.fetchCategories()
-    //let categories:[Category] = []
     
     var cells:[CGSize] = [CGSize]()
     
@@ -47,30 +47,31 @@ class ViewController: UIViewController {
         return cv
     }()
     
-    private lazy var emptyState = EmptyState(frame: self.view.safeAreaLayoutGuide.layoutFrame)
+    private lazy var emptyState = EmptyState(frame: .zero)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupUI()
     }
+
+}
+
+// MARK:- Setup UI
+extension ViewController {
     
     @objc func createNote() {
         let note = Store.newNote()
         self.notes.append(note)
         self.cells.append(newCellSize)
-        self.collectionView.reloadData()
+        self.collectionView.insertItems(at: [IndexPath(row: notes.count - 1, section: 0)])
     }
     
     @objc func settings() {
         print("settings")
     }
 
-
-}
-
-// MARK:- Setup UI
-extension ViewController {
+    
     func setupUI() {
         setupNavigation()
         setupCollection()
@@ -96,16 +97,21 @@ extension ViewController {
             collectionView.topAnchor.constraint(equalTo: categoryCollectionView.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
     func setupEmptyState() {
         self.view.addSubview(emptyState)
+        
+        NSLayoutConstraint.activate([
+            emptyState.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            emptyState.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 }
 
-
+// MARK:- CollectionView Methods
 extension ViewController:UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
@@ -131,7 +137,7 @@ extension ViewController:UICollectionViewDelegateFlowLayout, UICollectionViewDat
         case self.collectionView:
             let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! NoteViewCell
             let note = notes[index]
-            cell.index = index
+            cell.indexPath = indexPath
             cell.data = note
             cell.delegate = self
             return cell
@@ -140,6 +146,7 @@ extension ViewController:UICollectionViewDelegateFlowLayout, UICollectionViewDat
                 let cell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "category", for: indexPath) as! CategoryViewCell
                 let category = categories[index]
                 cell.data = category
+                cell.index = indexPath
                 cell.delegate = self
                 return cell
             } else {
@@ -175,27 +182,15 @@ extension ViewController:UICollectionViewDelegateFlowLayout, UICollectionViewDat
     }
 }
 
+//MARK:- Notes Methods
 extension ViewController: NoteDelegate {
     func setCategory(for: Note) {
         print("Category")
     }
     
-    func setAlarm(for: Note) {
-        print("Alarm")
-    }
-    
-    func setPeople(for: Note) {
-        print("People")
-    }
-    
-    func setMap(for: Note) {
-        let vc = MapViewController()
-        self.navigationController?.present(vc, animated: true, completion: nil)
-    }
-    
     func updateLayout(_ cell: NoteViewCell, with newSize: CGSize) {
         let height = newSize.height
-        cells[cell.index] = CGSize(width: newCellSize.width, height: height)
+        cells[cell.indexPath.row] = CGSize(width: newCellSize.width, height: height)
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
@@ -206,10 +201,20 @@ extension ViewController: NoteDelegate {
     func changeText(text: String, note: Note) {
         note.text = text
     }
+    
+    func deleteNote(note: Note, indexPath: IndexPath) {
+        Store.delete(note)
+        let index = notes.firstIndex(of: note)!
+        notes.remove(at: index)
+        collectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
+        Store.save()
+    }
 }
-//MARK:- Add Category Methods
-extension ViewController:AddCategoryDelegate, CategoryCellDelegate {
-    func showAlert(category: Category) {
+
+//MARK:- Category Methods
+extension ViewController:AddCategoryDelegate, CategoryCellDelegate, reloadTableDelegate {
+    
+    func showAlert(category: Category, index: IndexPath) {
         
         let alert = UIAlertController(title: "Menu", message: "Please Select an Option for \(category.title ?? "Category")", preferredStyle: .actionSheet)
 
@@ -218,31 +223,32 @@ extension ViewController:AddCategoryDelegate, CategoryCellDelegate {
         }))
 
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
+            guard let position = self.categories.firstIndex(of: category) else {
+                return
+            }
+            let indexPath = IndexPath(row: position, section: 0)
             Store.delete(category)
+            self.categories.remove(at: position)
+            self.categoryCollectionView.deleteItems(at: [indexPath])
+            Store.save()
         }))
 
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { (_) in
-            print("User click Dismiss button")
-        }))
-
-        self.present(alert, animated: true, completion: {
-            self.reloadTables()
-        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func addCategoryAction() {
         let vc = AddCategoryViewController()
-        navigationController?.present(vc, animated: true, completion: {
-            print("xd")
-            self.reloadTables()
-        })
+        vc.delegate = self
+        navigationController?.present(vc, animated: true, completion: nil)
     }
     
-    func reloadTables() {
-        print(categories.count)
-        self.categories = Store.fetchCategories()
-        self.categoryCollectionView.reloadData()
-        print(categories.count)
+    func insertItem(category: Category) {
+        self.categories.append(category)
+        let indexPath = IndexPath(row: categories.count - 1, section: 0)
+        self.categoryCollectionView.insertItems(at: [indexPath])
+        self.categoryCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+        Store.save()
     }
     
 }

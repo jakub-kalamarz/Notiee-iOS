@@ -9,12 +9,14 @@
 import UIKit
 
 protocol CategoryCellDelegate {
-    func showAlert(category: Category)
+    func showAlert(category: Category, index: IndexPath)
 }
 
 class CategoryViewCell: UICollectionViewCell {
     
     var delegate:CategoryCellDelegate!
+    
+    var index:IndexPath!
     
     var data:Category! {
         didSet {
@@ -39,7 +41,6 @@ class CategoryViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         setupUI()
-        
         
     }
     
@@ -68,7 +69,7 @@ class CategoryViewCell: UICollectionViewCell {
     @objc
     func longPress(_ sender: UIGestureRecognizer) {
         if sender.state == .began {
-            delegate.showAlert(category: data)
+            delegate.showAlert(category: data, index: index)
         }
     }
 }
