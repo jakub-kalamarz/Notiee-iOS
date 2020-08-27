@@ -32,7 +32,7 @@ class CategoryViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 22)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .systemBackground
+        label.textColor = .white
         return label
     }()
     

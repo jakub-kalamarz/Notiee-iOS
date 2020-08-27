@@ -36,7 +36,7 @@ class NoteViewCell: UICollectionViewCell {
         return indicator
     }()
     
-    private var title:CategoryTitleTextField = {
+    var title:CategoryTitleTextField = {
         let tf = CategoryTitleTextField()
         tf.font = .boldSystemFont(ofSize: 22)
         tf.placeholder = "Title"

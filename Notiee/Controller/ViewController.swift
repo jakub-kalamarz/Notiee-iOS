@@ -19,6 +19,12 @@ class ViewController: UIViewController {
     
     private var newCellSize: CGSize = .init(width: UIScreen.main.bounds.width, height: 80)
     
+    private lazy var categoryLabel:UILabel = {
+        let label = UILabel()
+        label.text = "Categories"
+        return label
+    }()
+    
     private lazy var categoryCollectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -47,7 +53,7 @@ class ViewController: UIViewController {
         return cv
     }()
     
-    private lazy var emptyState = EmptyState(frame: .zero)
+    private lazy var emptyState = EmptyState(frame: .zero,delegate: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,13 +64,16 @@ class ViewController: UIViewController {
 }
 
 // MARK:- Setup UI
-extension ViewController {
+extension ViewController: EmptyStateDelegate {
     
     @objc func createNote() {
         let note = Store.newNote()
         self.notes.append(note)
         self.cells.append(newCellSize)
-        self.collectionView.insertItems(at: [IndexPath(row: notes.count - 1, section: 0)])
+        let index = IndexPath(row: notes.count - 1, section: 0)
+        self.collectionView.insertItems(at: [index])
+        let cell = collectionView.cellForItem(at: index) as! NoteViewCell
+        cell.title.becomeFirstResponder()
     }
     
     @objc func settings() {
@@ -75,6 +84,14 @@ extension ViewController {
     func setupUI() {
         setupNavigation()
         setupCollection()
+        setupKeyboardResigner()
+    }
+    
+    func setupKeyboardResigner() {
+        let tap = createResignOnTap()
+        self.view.addGestureRecognizer(tap)
+        self.navigationController?.navigationBar.addGestureRecognizer(tap)
+        self.collectionView.addGestureRecognizer(tap)
     }
     
     func setupNavigation() {
@@ -106,7 +123,10 @@ extension ViewController {
         
         NSLayoutConstraint.activate([
             emptyState.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            emptyState.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            emptyState.heightAnchor.constraint(equalToConstant: 120),
+            emptyState.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            emptyState.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            emptyState.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         ])
     }
 }
