@@ -19,7 +19,6 @@
 		8C6D21A224E1F92E00360E44 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6D21A124E1F92E00360E44 /* AddCategoryViewController.swift */; };
 		8C763AF024840BB800E336EF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C763AEF24840BB800E336EF /* UIColorExtension.swift */; };
 		8C769E5824790E0C004AC842 /* NoteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C769E5724790E0C004AC842 /* NoteViewCell.swift */; };
-		8C7BF4892477E2AF00088387 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C7BF4872477E2AF00088387 /* Main.storyboard */; };
 		8CA2F1AF24D563D300E39294 /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA2F1AE24D563D300E39294 /* CategoryViewCell.swift */; };
 		8CE303C42477BD630063B29D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE303C32477BD630063B29D /* AppDelegate.swift */; };
 		8CE303C62477BD630063B29D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE303C52477BD630063B29D /* SceneDelegate.swift */; };
@@ -50,7 +49,6 @@
 		8C6D21A124E1F92E00360E44 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddCategoryViewController.swift; path = Notiee/Controller/AddCategoryViewController.swift; sourceTree = SOURCE_ROOT; };
 		8C763AEF24840BB800E336EF /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		8C769E5724790E0C004AC842 /* NoteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewCell.swift; sourceTree = "<group>"; };
-		8C7BF4882477E2AF00088387 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8CA2F1AE24D563D300E39294 /* CategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
 		8CE303C02477BD630063B29D /* Notiee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notiee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CE303C32477BD630063B29D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -187,7 +185,6 @@
 				8CE5C2552477F77E00834129 /* View */,
 				8C7BF48A2477E2F700088387 /* Controller */,
 				8C5DC4CD2477EEED00236E94 /* Model */,
-				8C7BF4872477E2AF00088387 /* Main.storyboard */,
 				8CE303CF2477BD680063B29D /* Assets.xcassets */,
 				8CE303D12477BD680063B29D /* LaunchScreen.storyboard */,
 				8CE303D42477BD680063B29D /* Info.plist */,
@@ -282,7 +279,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C7BF4892477E2AF00088387 /* Main.storyboard in Resources */,
 				8CE303D32477BD680063B29D /* LaunchScreen.storyboard in Resources */,
 				8CE303D02477BD680063B29D /* Assets.xcassets in Resources */,
 			);
@@ -349,14 +345,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8C7BF4872477E2AF00088387 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8C7BF4882477E2AF00088387 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8CE303D12477BD680063B29D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
