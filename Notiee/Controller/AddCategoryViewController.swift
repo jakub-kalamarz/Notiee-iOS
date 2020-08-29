@@ -79,7 +79,7 @@ class AddCategoryViewController: UIViewController {
             categoryCard.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -50),
             categoryCard.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
             categoryCard.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            categoryCard.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            categoryCard.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
             
             titleLabel.bottomAnchor.constraint(equalTo: categoryCard.bottomAnchor, constant: -10),
             titleLabel.leadingAnchor.constraint(equalTo: categoryCard.leadingAnchor, constant: 10),
@@ -99,6 +99,19 @@ class AddCategoryViewController: UIViewController {
         getRandomColor()
         
         hiddenTextField.becomeFirstResponder()
+        setupToolbar()
+    }
+    
+    func setupToolbar() {
+        let toolbar = UIToolbar()
+        let mapButton = UIBarButtonItem(image: UIImage(systemName: "map"), style: .plain, target: self, action: #selector(setMap))
+        toolbar.items = [mapButton]
+        toolbar.sizeToFit()
+        hiddenTextField.inputAccessoryView = toolbar
+    }
+    
+    @objc func setMap() {
+        print("Set Map Method")
     }
     
     @objc

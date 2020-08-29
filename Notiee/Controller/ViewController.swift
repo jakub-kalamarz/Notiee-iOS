@@ -82,6 +82,7 @@ extension ViewController: EmptyStateDelegate {
 
     
     func setupUI() {
+        view.backgroundColor = .systemBackground
         setupNavigation()
         setupCollection()
         setupKeyboardResigner()
