@@ -10,7 +10,11 @@ import UIKit
 
 class NoteViewCell: UICollectionViewCell {
     
-    weak var delegate:NoteDelegate?
+    weak var delegate:NoteDelegate? {
+        didSet {
+            self.updateFrame()
+        }
+    }
 
     var indexPath: IndexPath!
     
@@ -44,7 +48,7 @@ class NoteViewCell: UICollectionViewCell {
         return tf
     }()
     
-    private var paragraph:NoteTextView = {
+    var paragraph:NoteTextView = {
         let tv = NoteTextView()
         tv.font = .boldSystemFont(ofSize: 18)
         tv.isScrollEnabled = false
@@ -151,13 +155,13 @@ class NoteViewCell: UICollectionViewCell {
 
 
 extension NoteViewCell: NoteTextDelegate {
+    
     func backspaceAction() {
         title.becomeFirstResponder()
     }
     
-    func updateFrame(_ textView: UITextView) {
-        let size = title.frame.height + textView.contentSize.height
-        let height = size
+    func updateFrame() {
+        let height = title.frame.height + paragraph.contentSize.height
         let newSize = CGSize(width: 0, height: height)
         delegate?.updateLayout(self, with: newSize)
     }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol NoteTextDelegate: class {
-    func updateFrame(_ textView: UITextView)
+    func updateFrame()
     func backspaceAction()
 }
 
@@ -21,7 +21,7 @@ class NoteTextView: UITextView {
     
     override var contentSize: CGSize {
         didSet {
-            coustomDelegate?.updateFrame(self)
+            coustomDelegate?.updateFrame()
         }
     }
     

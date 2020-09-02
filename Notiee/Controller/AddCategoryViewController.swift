@@ -111,7 +111,11 @@ class AddCategoryViewController: UIViewController {
     }
     
     @objc func setMap() {
-        print("Set Map Method")
+        let vc = MapViewController()
+        vc.categoryName = categoryName
+        self.present(vc, animated: true, completion: {
+            print("teraz")
+        })
     }
     
     @objc

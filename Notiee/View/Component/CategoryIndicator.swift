@@ -15,7 +15,6 @@ class CategoryIndicator: UIView {
     init(color:CGColor) {
         super.init(frame: .zero)
         self.color = color
-        
         self.layer.backgroundColor = color
         self.layer.cornerRadius = 2
     }
