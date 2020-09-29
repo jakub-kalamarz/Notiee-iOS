@@ -15,6 +15,7 @@ protocol NoteDelegate: class {
     func updateLayout(_ cell: NoteViewCell, with newSize: CGSize)
     func setCategory(for note:Note)
     func deleteNote(note:Note, indexPath:IndexPath)
+    func showOptions(note: Note, index: IndexPath, cell: NoteViewCell)
 }
 
 

@@ -30,6 +30,12 @@ class NoteViewCell: UICollectionViewCell {
             } else {
                 self.paragraph.text = ""
             }
+            if let category = data.category {
+                let cgcolor = UIColor(hex: category.color!)?.cgColor
+                self.indicator.setColor(color: cgcolor!)
+            } else {
+                self.indicator.setColor(color: UIColor.label.cgColor)
+            }
         }
     }
 
@@ -57,76 +63,45 @@ class NoteViewCell: UICollectionViewCell {
         return tv
     }()
     
-    private var iconStack:UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.alignment = .center
-        stack.distribution = .fillEqually
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
-    
-    private var alarmIcon:UIButton = {
+    private var moreIcon:UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "alarm.fill"), for: .normal)
-        button.tintColor = .gray
-        return button
-    }()
-    
-    private var peopleIcon:UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "person.fill"), for: .normal)
-        button.tintColor = .gray
-        return button
-    }()
-    
-    private var mapIcon:UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "mappin.circle"), for: .normal)
-        button.tintColor = .gray
+        button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = .link
+        button.isHidden = true
         return button
     }()
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
-        indicator.isUserInteractionEnabled = true
-        indicator.addGestureRecognizer(gesture)
-        
-        //iconStack.addArrangedSubview(alarmIcon)
-        //iconStack.addArrangedSubview(peopleIcon)
-        //iconStack.addArrangedSubview(mapIcon)
-        
-        //alarmIcon.addTarget(self, action: #selector(alarmAction), for: .touchUpInside)
-        //peopleIcon.addTarget(self, action: #selector(peopleAction), for: .touchUpInside)
-        //mapIcon.addTarget(self, action: #selector(mapAction), for: .touchUpInside)
-        
-        //self.contentView.addSubview(iconStack)
+        super.init(frame: frame)        
         self.contentView.addSubview(indicator)
         self.contentView.addSubview(title)
         self.contentView.addSubview(paragraph)
+        self.contentView.addSubview(moreIcon)
         paragraph.coustomDelegate = self
         
         title.delegate = self
         title.textDelegate = self
         title.addTarget(self, action: #selector(titleChanged(_:)), for: .editingChanged)
+        title.addTarget(self, action: #selector(titleFocus(_:)), for: .editingDidBegin)
+        title.addTarget(self, action: #selector(titleFocus(_:)), for: .editingDidEnd)
         paragraph.delegate = self
+        moreIcon.addTarget(self, action: #selector(moreAction(_:)), for: .touchUpInside)
 
         NSLayoutConstraint.activate([
             indicator.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 5),
             indicator.topAnchor.constraint(equalTo: self.topAnchor),
             indicator.widthAnchor.constraint(equalToConstant: 7),
             indicator.heightAnchor.constraint(equalTo: self.heightAnchor),
-            /*
-            iconStack.heightAnchor.constraint(equalTo: title.heightAnchor),
-            iconStack.widthAnchor.constraint(equalToConstant: 100),
-            iconStack.topAnchor.constraint(equalTo: contentView.topAnchor),
-            iconStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            */
+            
             title.topAnchor.constraint(equalTo: contentView.topAnchor),
             title.leadingAnchor.constraint(equalTo: indicator.trailingAnchor, constant: 5),
-            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -50),
+            
+            moreIcon.topAnchor.constraint(equalTo: contentView.topAnchor),
+            moreIcon.leadingAnchor.constraint(equalTo: title.trailingAnchor),
+            moreIcon.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            moreIcon.heightAnchor.constraint(equalTo: title.heightAnchor),
             
             paragraph.topAnchor.constraint(equalTo: title.bottomAnchor),
             paragraph.leadingAnchor.constraint(equalTo: indicator.trailingAnchor),
@@ -136,12 +111,14 @@ class NoteViewCell: UICollectionViewCell {
     }
     
     @objc
-    func longPress(_ sender:UIGestureRecognizer) {
-        if sender.state == .began {
-            delegate?.setCategory(for: self.data)
-        }
+    func moreAction(_ sender:UIButton) {
+        delegate?.showOptions(note: data, index: indexPath, cell: self)
     }
     
+    @objc
+    func titleFocus(_ sender:UITextField) {
+        moreIcon.isHidden.toggle()
+    }
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         UIView.animate(withDuration: 0.5) {
             self.layoutIfNeeded()
@@ -150,6 +127,10 @@ class NoteViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setColor(color: CGColor) {
+        indicator.setColor(color: color)
     }
 }
 

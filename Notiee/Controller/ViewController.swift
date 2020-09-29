@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     
     private var newCellSize: CGSize = .init(width: UIScreen.main.bounds.width, height: 80)
     
+    var selected:NoteViewCell!
+    
     private lazy var categoryLabel:UILabel = {
         let label = UILabel()
         label.text = "Categories"
@@ -30,6 +32,7 @@ class ViewController: UIViewController {
         layout.scrollDirection = .horizontal
         layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.allowsSelection = false
         cv.isPagingEnabled = true
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(CategoryViewCell.self, forCellWithReuseIdentifier: "category")
@@ -78,6 +81,7 @@ extension ViewController: EmptyStateDelegate {
     
     @objc func settings() {
         print("settings")
+        collectionView.reloadData()
     }
 
     
@@ -201,10 +205,38 @@ extension ViewController:UICollectionViewDelegateFlowLayout, UICollectionViewDat
         }
         return CGSize(width: 0, height: 0)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == categoryCollectionView {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneSelection))
+            let cell = categoryCollectionView.cellForItem(at: indexPath) as! CategoryViewCell
+            let category = cell.data
+            let colorHex = category?.color
+            let color = UIColor(hex: colorHex!)
+            let cgColor = color?.cgColor
+            let note = selected.data
+            note?.category = category
+            selected.setColor(color: cgColor!)
+        }
+    }
+    
+    @objc
+    func doneSelection() {
+        categoryCollectionView.allowsSelection = false
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(createNote))
+        Store.save()
+        print("done")
+    }
 }
 
 //MARK:- Notes Methods
 extension ViewController: NoteDelegate {
+    func selectCategory(note: Note, cell:NoteViewCell) {
+        self.categoryCollectionView.allowsSelection = true
+        self.selected = cell
+    }
+    
     func setCategory(for: Note) {
         print("Category")
     }
@@ -229,6 +261,29 @@ extension ViewController: NoteDelegate {
         notes.remove(at: index)
         collectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
         Store.save()
+    }
+    
+    func showOptions(note: Note, index: IndexPath, cell: NoteViewCell) {
+        
+        let alert = UIAlertController(title: "Menu", message: "Please Select an Option for \(note.title ?? "Note")", preferredStyle: .actionSheet)
+
+        alert.addAction(UIAlertAction(title: "Select category", style: .default, handler: { (_) in
+            self.selectCategory(note: note, cell: cell)
+        }))
+
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
+            guard let position = self.notes.firstIndex(of: note) else {
+                return
+            }
+            let indexPath = IndexPath(row: position, section: 0)
+            Store.delete(note)
+            self.notes.remove(at: position)
+            self.collectionView.deleteItems(at: [indexPath])
+            Store.save()
+        }))
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

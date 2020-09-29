@@ -30,7 +30,7 @@ class AddCategoryViewController: UIViewController {
     var reloadButton:UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "arrow.clockwise"), for: .normal)
-        button.tintColor = .systemBackground
+        button.tintColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -39,7 +39,7 @@ class AddCategoryViewController: UIViewController {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 22)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .systemBackground
+        label.textColor = .white
         label.isUserInteractionEnabled = true
         label.text = "Category Title"
         return label
@@ -52,6 +52,15 @@ class AddCategoryViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .black
         return view
+    }()
+    
+    var mapCard:MapCard = {
+        let map = MapCard()
+        map.layer.cornerRadius = 12
+        map.layer.masksToBounds = true
+        map.translatesAutoresizingMaskIntoConstraints = false
+        map.backgroundColor = .black
+        return map
     }()
     
     var hiddenTextField:UITextField = {
@@ -87,6 +96,8 @@ class AddCategoryViewController: UIViewController {
             
             reloadButton.trailingAnchor.constraint(equalTo: categoryCard.trailingAnchor, constant: -10),
             reloadButton.topAnchor.constraint(equalTo: categoryCard.topAnchor, constant: 10),
+            reloadButton.widthAnchor.constraint(equalToConstant: 30),
+            reloadButton.heightAnchor.constraint(equalToConstant: 30),
         ])
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(focusTextField))
@@ -98,10 +109,25 @@ class AddCategoryViewController: UIViewController {
         
         getRandomColor()
         
+        setupMapCard()
+        
         hiddenTextField.becomeFirstResponder()
-        setupToolbar()
+    //    setupToolbar()
     }
     
+    func setupMapCard() {
+        view.addSubview(mapCard)
+        mapCard.delegate = self
+        NSLayoutConstraint.activate([
+            mapCard.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -50),
+            mapCard.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+            mapCard.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            mapCard.topAnchor.constraint(equalTo: categoryCard.bottomAnchor, constant: 30),
+        ])
+        
+    }
+    
+    /*
     func setupToolbar() {
         let toolbar = UIToolbar()
         let mapButton = UIBarButtonItem(image: UIImage(systemName: "map"), style: .plain, target: self, action: #selector(setMap))
@@ -110,13 +136,13 @@ class AddCategoryViewController: UIViewController {
         hiddenTextField.inputAccessoryView = toolbar
     }
     
+    
     @objc func setMap() {
         let vc = MapViewController()
         vc.categoryName = categoryName
-        self.present(vc, animated: true, completion: {
-            print("teraz")
-        })
+        self.present(vc, animated: true, completion: nil)
     }
+    */
     
     @objc
     func getRandomColor() {
@@ -153,3 +179,15 @@ extension AddCategoryViewController:UITextFieldDelegate {
         return true
     }
 }
+
+extension AddCategoryViewController: mapCardDelegate {
+    func showMapVC() {
+        print("tutaj")
+        let map = MapViewController()
+        self.present(map, animated: true, completion: nil)
+    }
+    
+    
+}
+
+

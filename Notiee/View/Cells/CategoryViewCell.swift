@@ -64,6 +64,8 @@ class CategoryViewCell: UICollectionViewCell {
         
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
         self.addGestureRecognizer(gesture)
+        
+        self.selectedBackgroundView = selectedView()
     }
     
     @objc
@@ -71,5 +73,24 @@ class CategoryViewCell: UICollectionViewCell {
         if sender.state == .began {
             delegate.showAlert(category: data, index: index)
         }
+    }
+    
+    func selectedView() -> UIView {
+        let view = UIView(frame: self.frame)
+        //view.backgroundColor = .black
+        
+        let selectedIcon = UIImageView(image: UIImage(systemName: "checkmark.circle"))
+        selectedIcon.translatesAutoresizingMaskIntoConstraints = false
+        selectedIcon.tintColor = .white
+        view.addSubview(selectedIcon)
+        
+        NSLayoutConstraint.activate([
+            selectedIcon.topAnchor.constraint(equalTo: view.topAnchor, constant: 5),
+            selectedIcon.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            selectedIcon.widthAnchor.constraint(equalToConstant: 20),
+            selectedIcon.heightAnchor.constraint(equalToConstant: 20),
+        ])
+        
+        return view
     }
 }

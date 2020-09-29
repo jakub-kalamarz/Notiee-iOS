@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BA880D52508192400106D15 /* MapCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA880D42508192400106D15 /* MapCard.swift */; };
 		3BAB40C124F82B44000CAD57 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAB40C024F82B44000CAD57 /* UIViewController.swift */; };
 		3BE6EC1724FEF08C0056FEAE /* MKPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE6EC1624FEF08C0056FEAE /* MKPointAnnotation.swift */; };
 		8C01762224940DAF006680AB /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C01762124940DAF006680AB /* EmptyState.swift */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		335EC8A88B4C813645EDEF49 /* Pods-Notiee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notiee.release.xcconfig"; path = "Target Support Files/Pods-Notiee/Pods-Notiee.release.xcconfig"; sourceTree = "<group>"; };
+		3BA880D42508192400106D15 /* MapCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCard.swift; sourceTree = "<group>"; };
 		3BAB40C024F82B44000CAD57 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		3BE6EC1624FEF08C0056FEAE /* MKPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKPointAnnotation.swift; sourceTree = "<group>"; };
 		8C01762124940DAF006680AB /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			children = (
 				8C75578324A53E3B001F96C2 /* Cells */,
 				8C01762124940DAF006680AB /* EmptyState.swift */,
+				3BA880D42508192400106D15 /* MapCard.swift */,
 				8CE5C2582477FBCA00834129 /* Component */,
 			);
 			path = View;
@@ -329,6 +332,7 @@
 				3BE6EC1724FEF08C0056FEAE /* MKPointAnnotation.swift in Sources */,
 				8C5DC4CB2477EEB100236E94 /* Note+CoreDataClass.swift in Sources */,
 				8CF43CB024AE4987007135DA /* MapViewController.swift in Sources */,
+				3BA880D52508192400106D15 /* MapCard.swift in Sources */,
 				8C769E5824790E0C004AC842 /* NoteViewCell.swift in Sources */,
 				8C6C1499247DA8CC0006FEC7 /* NoteTextView.swift in Sources */,
 				8C6D21A224E1F92E00360E44 /* AddCategoryViewController.swift in Sources */,

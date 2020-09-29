@@ -12,19 +12,17 @@ class CategoryIndicator: UIView {
     
     var color:CGColor!
     
-    init(color:CGColor) {
+    init(_ color:CGColor = UIColor.label.cgColor) {
         super.init(frame: .zero)
         self.color = color
         self.layer.backgroundColor = color
         self.layer.cornerRadius = 2
     }
     
-    init() {
-        super.init(frame: .zero)
-        self.color = Store.getRandomColor()
-        
-        self.layer.backgroundColor = color
-        self.layer.cornerRadius = 2
+    func setColor(color:CGColor) {
+        UIView.animate(withDuration: 0.5) {
+            self.layer.backgroundColor = color
+        }
     }
     
     required init?(coder: NSCoder) {

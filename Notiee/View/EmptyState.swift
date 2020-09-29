@@ -34,24 +34,22 @@ class EmptyState: UIView {
         
         let firstLabel = UILabel()
         firstLabel.text = first
-        firstLabel.textAlignment = .right
         firstLabel.font = .boldSystemFont(ofSize: 22)
         
         let secondLabel = UILabel()
         secondLabel.text = second
         secondLabel.font = .boldSystemFont(ofSize: 22)
         
-        let stackView = UIStackView(arrangedSubviews: [firstLabel, button, secondLabel])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fillProportionally
-        stackView.axis = .horizontal
+        let stackview = UIStackView(arrangedSubviews: [firstLabel,button,secondLabel])
+        stackview.translatesAutoresizingMaskIntoConstraints = false
         
-        self.addSubview(stackView)
+        
+        addSubview(stackview)
         
         NSLayoutConstraint.activate([
-            stackView.widthAnchor.constraint(equalTo: widthAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
-            stackView.centerXAnchor.constraint(equalTo: centerXAnchor)
+            stackview.heightAnchor.constraint(equalToConstant: 70),
+            stackview.centerXAnchor.constraint(equalTo: centerXAnchor),
+            stackview.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }
     
